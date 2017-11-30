@@ -1,0 +1,14 @@
+.jumbotron {
+	padding: 14px 20px !important;
+}
+
+.jumbotron h1 {
+	font-size: 48px;
+	margin-top: 0;
+}
+
+@media screen and (max-width: 992px){
+	.container-sm-narrow {
+		max-width: 450px;
+	}
+}

@@ -11,7 +11,7 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home($section)
+    public function home($section = '')
     {
         return $section;
     }

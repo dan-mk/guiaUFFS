@@ -16,9 +16,7 @@ Route::domain('{section}.guia.uffs')->group(function (){
     Route::get('{page}', 'PublicController@page');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PublicController@home');
 
 Auth::routes();
 

@@ -8,5 +8,9 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-// Jumbotron
-@import "jumbotron";
+@import "navbar";
+
+// Login and register forms
+@import "logforms";
+
+@import "contribute";
