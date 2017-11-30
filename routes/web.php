@@ -18,6 +18,19 @@ Route::domain('{section}.guia.uffs')->group(function (){
 
 Route::get('/', 'PublicController@home');
 
-Auth::routes();
+// Authentication Routes...
+Route::get('entrar', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('entrar', 'Auth\LoginController@login');
+Route::post('sair', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('contribuir', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('contribuir', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('senha/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('senha/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('senha/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('senha/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
