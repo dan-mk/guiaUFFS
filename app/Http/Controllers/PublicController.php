@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Section;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -11,9 +12,20 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home($section = '')
+    public function home($subdomain = '')
     {
-        return $section;
+		$section_id = Section::getSection($subdomain);
+		if(!$section_id){
+			abort(404);
+		}
+
+		$section = Section::find($section_id);
+
+		$data = [
+			'section' => ['name' => $section->name],
+		];
+
+        return view('section_home', $data);
     }
 
 	/**
