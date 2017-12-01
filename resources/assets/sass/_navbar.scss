@@ -16,6 +16,9 @@ body {
 .navbar-brand {
 	height: auto;
 	padding: 22px 18px;
+	&:hover {
+		background: #f1feff !important;
+	}
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -23,10 +26,30 @@ body {
 	font-weight: 600;
 	padding: 32px 20px;
 	&:hover {
+		background: #f1feff;
 		color: black;
 	}
 }
 
 .navbar-special {
 	color: #275dd6 !important;
+}
+
+.navbar-toggle {
+	background: white !important;
+	border: 0;
+	padding: 37px 30px 35px;
+	margin: 0;
+	.icon-bar {
+		background: black !important;
+	}
+	&:hover {
+		background: #f1feff !important;
+	}
+}
+
+@media screen and (max-width: 992px){
+	.navbar-default .navbar-nav > li > a {
+		padding: 16px 20px;
+	}
 }
