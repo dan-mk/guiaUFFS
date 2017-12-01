@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>GuiaUFFS | {{ $section['name'] ?? 'Guia universitário colaborativo' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-						<li><a href="{{ url('sobre') }}">Sobre</a></li>
+						<li><a href="{{ route('about') }}">Sobre</a></li>
                         <!-- Authentication Links -->
                         @guest
 							<li><a href="{{ route('register') }}">Contribuir</a></li>

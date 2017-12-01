@@ -33,4 +33,8 @@ Route::domain('guia.uffs')->group(function (){
 	Route::post('senha/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 	Route::get('senha/redefinir/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 	Route::post('senha/redefinir', 'Auth\ResetPasswordController@reset');
+
+	Route::get('sobre', function (){
+		return view('about');
+	})->name('about');
 });

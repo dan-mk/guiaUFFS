@@ -6,8 +6,12 @@
 		<div class="col-md-6">
 			<div class="jumbotron">
 				<h1>Contribuir para o GuiaUFFS</h1>
-				<p>Se você é aluno da Universidade Federal da Fronteira Sul e deseja contribuir para o GuiaUFFS, crie sua conta!</p>
-				<p>Após a autorização de um administrador, você poderá se tornar um editor e começar a ajudar nossa comunidade.</p>
+				<p>
+					Se você é aluno da Universidade Federal da Fronteira Sul e 
+					deseja contribuir para o GuiaUFFS, crie sua conta!
+					Após a autorização de um administrador, você poderá se
+					tornar um editor e começar a ajudar nossa comunidade.
+				</p>
 			</div>
 		</div>
         <div class="col-md-5 col-md-offset-1">
