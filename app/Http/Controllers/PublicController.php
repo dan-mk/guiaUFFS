@@ -18,14 +18,14 @@ class PublicController extends Controller
 		if(!$section_id){
 			abort(404);
 		}
-
 		$section = Section::find($section_id);
+		session(['section_subdomain' => $section->subdomain]);
 
 		$data = [
 			'section' => ['name' => $section->name],
 		];
 
-        return view('section_home', $data);
+        return view('home', $data);
     }
 
 	/**

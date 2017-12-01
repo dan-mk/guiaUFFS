@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ \App\Helpers\Useful::routeSection('home') }}">
                         <img src="{{ asset('img/guiauffs.png') }}" alt="GuiaUFFS">
                     </a>
                 </div>

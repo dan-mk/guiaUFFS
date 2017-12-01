@@ -12,25 +12,25 @@
 */
 
 Route::domain('{section}.guia.uffs')->group(function (){
-	Route::get('/', 'PublicController@home');
+	Route::get('/', 'PublicController@home')->name('home');
     Route::get('{page}', 'PublicController@page');
 });
 
-Route::get('/', 'PublicController@home');
+Route::get('/', 'PublicController@home')->name('main.home');
 
-// Authentication Routes...
-Route::get('entrar', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('entrar', 'Auth\LoginController@login');
-Route::post('sair', 'Auth\LoginController@logout')->name('logout');
+Route::domain('guia.uffs')->group(function (){
+	// Authentication Routes...
+	Route::get('entrar', 'Auth\LoginController@showLoginForm')->name('login');
+	Route::post('entrar', 'Auth\LoginController@login');
+	Route::post('sair', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-Route::get('contribuir', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('contribuir', 'Auth\RegisterController@register');
+	// Registration Routes...
+	Route::get('contribuir', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	Route::post('contribuir', 'Auth\RegisterController@register');
 
-// Password Reset Routes...
-Route::get('senha/redefinir', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('senha/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('senha/redefinir/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('senha/redefinir', 'Auth\ResetPasswordController@reset');
-
-Route::get('/home', 'HomeController@index')->name('home');
+	// Password Reset Routes...
+	Route::get('senha/redefinir', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+	Route::post('senha/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	Route::get('senha/redefinir/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+	Route::post('senha/redefinir', 'Auth\ResetPasswordController@reset');
+});

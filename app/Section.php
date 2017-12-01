@@ -15,14 +15,14 @@ class Section extends Model
 		foreach($sections as $section){
 			$subd = $section->subdomain;
 			$id = $section->id;
-			while(isset($parentages[$id])){
+			while(isset($parentages[$id]) && $parentages[$id] != 1){
 				$id = $parentages[$id];
 				$subd .= ".{$sections[$id]->subdomain}";
 			}
 			$available_subdomains[$section->id] = $subd;
 		}
 
-		return array_search("$subdomain.", $available_subdomains);
+		return array_search("$subdomain", $available_subdomains);
 	}
 
 	public static function getIndexedSections(){
