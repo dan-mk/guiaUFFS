@@ -14,6 +14,9 @@
                         </div>
                     @endif
 
+					@foreach($sections as $section)
+						<p> Subdominio: {{ $section->subdomain }}, Nome: {{ $section->name }}</p>
+					@endforeach
                     You are logged in!
                 </div>
             </div>
