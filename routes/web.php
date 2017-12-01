@@ -28,9 +28,9 @@ Route::get('contribuir', 'Auth\RegisterController@showRegistrationForm')->name('
 Route::post('contribuir', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('senha/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('senha/redefinir', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('senha/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('senha/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('senha/reset', 'Auth\ResetPasswordController@reset');
+Route::get('senha/redefinir/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('senha/redefinir', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
