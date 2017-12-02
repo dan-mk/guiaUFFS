@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Auth;
+use App\Section;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +28,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	/**
+     * The sections that the user can modify.
+     */
+    public function sections()
+    {
+		if(Auth::user()->isAdmin()){
+			return Section::with('pages');
+		}
+        return $this->belongsToMany('App\Section', 'permissions')->with('pages');
+    }
+
+	public function isAdmin(){
+		return $this->admin;
+	}
 }

@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-	public static function getSection($subdomain){
+	public function pages()
+	{
+		return $this->hasMany('App\Page');
+	}
+
+	public static function getSection($subdomain)
+	{
 		$sections = self::getIndexedSections();
 		$parentages = Parentage::getIndexedParentages();
 
@@ -25,7 +31,8 @@ class Section extends Model
 		return array_search("$subdomain", $available_subdomains);
 	}
 
-	public static function getIndexedSections(){
+	public static function getIndexedSections()
+	{
 		$sections = self::all();
 
 		$s = [];

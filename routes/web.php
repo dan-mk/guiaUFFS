@@ -16,9 +16,9 @@ Route::domain('{section}.guia.uffs')->group(function (){
     Route::get('{page}', 'PublicController@page');
 });
 
-Route::get('/', 'PublicController@home')->name('main.home');
-
 Route::domain('guia.uffs')->group(function (){
+	Route::get('/', 'PublicController@home')->name('main.home');
+
 	// Authentication Routes...
 	Route::get('entrar', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('entrar', 'Auth\LoginController@login');
@@ -37,4 +37,12 @@ Route::domain('guia.uffs')->group(function (){
 	Route::get('sobre', function (){
 		return view('about');
 	})->name('about');
+
+	Route::prefix('editor')->group(function (){
+		Route::get('/', 'EditorController@pages')->name('editor.pages');
+		Route::get('grupos', 'EditorController@groups')->name('editor.groups');
+	    Route::resource('paginas', 'PageController');
+	});
+
+	Route::get('{page}', 'PublicController@page');
 });
