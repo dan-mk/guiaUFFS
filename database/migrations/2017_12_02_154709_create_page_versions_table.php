@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSectionsTable extends Migration
+class CreatePageVersionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('page_versions', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('name');
-			$table->string('subdomain');
+			$table->string('title');
+			$table->string('content');
             $table->timestamps();
-			
+
+			$table->integer('page_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 
-    		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -32,6 +34,6 @@ class CreateSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('page_versions');
     }
 }

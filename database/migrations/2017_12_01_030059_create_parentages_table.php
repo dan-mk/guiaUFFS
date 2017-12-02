@@ -16,6 +16,7 @@ class CreateParentagesTable extends Migration
         Schema::create('parentages', function (Blueprint $table) {
 			$table->integer('parent')->unsigned();
 			$table->integer('child')->unsigned()->unique();
+			
 			$table->foreign('parent')->references('id')->on('sections')->onDelete('cascade');
 			$table->foreign('child')->references('id')->on('sections')->onDelete('cascade');
         });
