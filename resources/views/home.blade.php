@@ -14,9 +14,7 @@
 					@foreach($pages as $page)
 						<li class="list-group-item">
 							<a href="{{ url($page->address) }}">
-							@foreach($page->page_versions as $page_version)
-								{{ $page_version->title }}
-							@endforeach
+								{{ $page->page_versions->first()->title }}
 							</a>
 						</li>
 					@endforeach

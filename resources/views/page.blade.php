@@ -7,7 +7,12 @@
 			<div class="page-header">
 				<h1>{{ $page_version->title }}</h1>
 			</div>
-			{{ $page_version->content }}
+			<ol>
+			@foreach($subtitles as $i => $subtitle)
+				<li><a href="#{{ $subtitles_ids[$i] }}">{{ $subtitle }}</a></li>
+			@endforeach
+			</ol>
+			{!! $page_version->content !!}
         </div>
     </div>
 </div>

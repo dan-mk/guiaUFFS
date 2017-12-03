@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Section;
+use App\Libraries\JBBCode;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -52,8 +53,18 @@ class PublicController extends Controller
 		$page_version = $page->page_versions->first();
 		$title = $page_version->title;
 
+		$parser = new JBBCode\Parser();
+		$parser->addCodeDefinitionSet(new JBBCode\CustomCodeDefinitionSet());
+
+		$page_version->content = $parser->parse($page_version->content)->getAsHtml();
+
+		preg_match_all('/<h2 id="(.+)">(.+)<\/h2>/', $page_version->content, $matches);
+
+		$subtitles = $matches[2];
+		$subtitles_ids = $matches[1];
+
         return view('page', compact(
-			'title', 'section', 'page', 'page_version'
+			'title', 'section', 'page', 'page_version', 'subtitles', 'subtitles_ids'
 		));
     }
 }
