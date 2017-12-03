@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-		Gate::define('create-page', function ($user, $section){
+		Gate::define('change-pages-in-section', function ($user, $section){
 		    return $user->isAdmin() or $user->sections()->get()->contains($section);
 	    });
     }

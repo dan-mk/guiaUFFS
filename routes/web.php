@@ -13,7 +13,7 @@
 
 Route::domain('{section}.guia.uffs')->group(function (){
 	Route::get('/', 'PublicController@home')->name('home');
-    Route::get('{page}', 'PublicController@page');
+    Route::get('{page}', 'PublicController@page')->name('page');
 });
 
 Route::domain('guia.uffs')->group(function (){
@@ -40,7 +40,13 @@ Route::domain('guia.uffs')->group(function (){
 
 	Route::prefix('editor')->group(function (){
 		Route::get('/', 'EditorController@index')->name('editor');
-		Route::resource('paginas', 'PageController');
+		Route::post('paginas', 'PageController@store')->name('pages.store');
+		Route::get('paginas', 'PageController@index')->name('pages.index');
+		Route::get('paginas/criar', 'PageController@create')->name('pages.create');
+		Route::put('paginas/{id}', 'PageController@update')->name('pages.update');
+		Route::get('paginas/{id}', 'PageController@show')->name('pages.show');
+		Route::delete('paginas/{id}', 'PageController@destroy')->name('pages.destroy');
+		Route::get('paginas/{id}/editar', 'PageController@edit')->name('pages.edit');
 	});
 
 	Route::get('{page}', 'PublicController@page');

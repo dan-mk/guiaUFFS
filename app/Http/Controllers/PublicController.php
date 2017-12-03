@@ -22,7 +22,7 @@ class PublicController extends Controller
 		session(['section_subdomain' => $section->subdomain]);
 
 		$title = $section->name;
-		$pages = $section->pages()->get();
+		$pages = $section->pages()->where('hidden', '=', false)->get();
 
         return view('home', compact(
 			'title', 'section', 'pages'
@@ -43,9 +43,11 @@ class PublicController extends Controller
 		$section = Section::find($section_id);
 		session(['section_subdomain' => $section->subdomain]);
 
-		$page = $section->pages()
-					->where('address', '=', $page_address)
-					->with('page_versions')->first();
+		$page = $section->pages()->where('address', '=', $page_address)->with('page_versions')->first();
+
+		if($page == null or $page->hidden == true){
+			abort(404);
+		}
 
 		$page_version = $page->page_versions->first();
 		$title = $page_version->title;

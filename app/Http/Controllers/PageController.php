@@ -35,8 +35,8 @@ class PageController extends Controller
     {
 		$section = Section::find($request->section_id ?? -1);
 
-		if(!$section){
-			return redirect()->route('paginas.index');
+		if($section == null){
+			return redirect()->route('pages.index');
 		}
 
         return view('editor.pages_create', compact(
@@ -64,8 +64,9 @@ class PageController extends Controller
 		$content = $request->content;
 		$section_id = intval($request->section_id);
 		$user_id = Auth::user()->id;
+		$hidden = isset($request->hidden);
 
-		$allowed_to_create = Gate::allows('create-page', Section::find($section_id));
+		$allowed_to_create = Gate::allows('change-pages-in-section', Section::find($section_id));
 		$page_doesnt_exist = !Page::where([
 		    ['address', '=', $address],
 		    ['section_id', '=', $section_id],
@@ -82,13 +83,13 @@ class PageController extends Controller
 		$v->validate();
 
 		$page_id = Page::create(compact(
-			'address', 'user_id', 'section_id'
+			'address', 'user_id', 'section_id', 'hidden'
 		))->id;
 		PageVersion::create(compact(
 			'title', 'content', 'page_id', 'user_id'
 		));
 
-		return redirect()->route('paginas.index');
+		return redirect()->route('pages.index');
     }
 
     /**
@@ -99,7 +100,12 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        //
+		$page = Page::with('section')->find($id);
+		if($page == null){
+			abort(404);
+		}
+
+        return redirect()->route('page', [$page->section->subdomain, $page->address]);
     }
 
     /**
@@ -108,9 +114,16 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($page_id)
     {
-        //
+		$page = Page::with('section', 'page_versions')->find($page_id);
+		$section = $page->section;
+
+		if($page == null){
+			return redirect()->route('pages.index');
+		}
+
+        return view('editor.pages_edit', compact('page', 'section'));
     }
 
     /**
@@ -120,9 +133,51 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $page_id)
     {
-        //
+		$page = Page::find($page_id);
+		if($page == null){
+			return redirect()->route('pages.index');
+		}
+
+		$request->validate([
+			'address' => 'required',
+			'title' => 'required',
+			'content' => 'required',
+		]);
+
+		$address = strtolower($request->address);
+		$title = $request->title;
+		$content = $request->content;
+		$user_id = Auth::user()->id;
+		$hidden = isset($request->hidden);
+
+		$allowed_to_change = Gate::allows('change-pages-in-section', Section::find($page->section_id));
+		$page_doesnt_exist = ($page->address == $address or !Page::where([
+		    ['address', '=', $address],
+		    ['section_id', '=', $page->section_id],
+		])->exists());
+
+		$v = Validator::make(compact('address', 'allowed_to_change', 'page_doesnt_exist'), [
+			'address' => 'required|max:255|regex:/^[a-z\d-]+$/',
+			'allowed_to_change' => 'accepted',
+			'page_doesnt_exist' => 'accepted'
+		], [
+			'allowed_to_change.accepted' => 'You are not allowed to make changes to this section',
+			'page_doesnt_exist.accepted' => 'This address already exists in this section'
+		]);
+		$v->validate();
+
+		$page->fill(compact(
+			'address', 'hidden'
+		));
+		$page->save();
+
+		PageVersion::create(compact(
+			'title', 'content', 'page_id', 'user_id'
+		));
+
+		return redirect()->route('pages.index');
     }
 
     /**

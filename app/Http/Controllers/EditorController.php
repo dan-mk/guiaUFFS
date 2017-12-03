@@ -13,6 +13,6 @@ class EditorController extends Controller
      */
     public function index()
     {
-		return redirect()->route('paginas.index');
+		return redirect()->route('pages.index');
     }
 }

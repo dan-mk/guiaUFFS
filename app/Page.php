@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
 	// The attributes that are mass assignable
-	protected $fillable = ['address', 'user_id', 'section_id'];
+	protected $fillable = ['address', 'user_id', 'section_id', 'hidden'];
 
 	public function section()
 	{
