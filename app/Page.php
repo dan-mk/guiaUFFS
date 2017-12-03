@@ -16,6 +16,6 @@ class Page extends Model
 
 	public function page_versions()
 	{
-		return $this->hasMany('App\PageVersion');
+		return $this->hasMany('App\PageVersion')->orderBy('created_at', 'desc');
 	}
 }

@@ -22,9 +22,10 @@ class PublicController extends Controller
 		session(['section_subdomain' => $section->subdomain]);
 
 		$title = $section->name;
+		$pages = $section->pages()->get();
 
         return view('home', compact(
-			'title', 'section'
+			'title', 'section', 'pages'
 		));
     }
 
@@ -33,8 +34,24 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function page($subdomain, $page)
+    public function page($subdomain, $page_address)
     {
-        return $section . '-' . $page;
+		$section_id = Section::getSection($subdomain);
+		if(!$section_id){
+			abort(404);
+		}
+		$section = Section::find($section_id);
+		session(['section_subdomain' => $section->subdomain]);
+
+		$page = $section->pages()
+					->where('address', '=', $page_address)
+					->with('page_versions')->first();
+
+		$page_version = $page->page_versions->first();
+		$title = $page_version->title;
+
+        return view('page', compact(
+			'title', 'section', 'page', 'page_version'
+		));
     }
 }
