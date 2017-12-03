@@ -39,9 +39,8 @@ Route::domain('guia.uffs')->group(function (){
 	})->name('about');
 
 	Route::prefix('editor')->group(function (){
-		Route::get('/', 'EditorController@pages')->name('editor.pages');
-		Route::get('grupos', 'EditorController@groups')->name('editor.groups');
-	    Route::resource('paginas', 'PageController');
+		Route::get('/', 'EditorController@index')->name('editor');
+		Route::resource('paginas', 'PageController');
 	});
 
 	Route::get('{page}', 'PublicController@page');

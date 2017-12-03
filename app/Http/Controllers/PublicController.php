@@ -21,11 +21,11 @@ class PublicController extends Controller
 		$section = Section::find($section_id);
 		session(['section_subdomain' => $section->subdomain]);
 
-		$data = [
-			'section' => ['name' => $section->name],
-		];
+		$title = $section->name;
 
-        return view('home', $data);
+        return view('home', compact(
+			'title', 'section'
+		));
     }
 
 	/**

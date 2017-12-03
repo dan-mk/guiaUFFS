@@ -10,4 +10,9 @@ class Page extends Model
 	{
 		return $this->belongsTo('App\Section');
 	}
+
+	public function page_versions()
+	{
+		return $this->hasMany('App\PageVersion');
+	}
 }

@@ -21,11 +21,9 @@ class CreatePagesTable extends Migration
 
 			$table->integer('section_id')->unsigned();
 			$table->integer('user_id')->unsigned();
-			$table->integer('group_id')->unsigned()->nullable();
 
 			$table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('group_id')->references('id')->on('groups')->onDelete('set null');
 
 			$table->unique(['section_id', 'address']);
         });

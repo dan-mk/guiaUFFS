@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Section;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,7 +15,11 @@ class PageController extends Controller
      */
     public function index()
     {
-        return 'index';
+		$sections = Auth::user()->sections()->get();
+
+        return view('editor.pages', compact(
+			'sections'
+		));
     }
 
     /**
@@ -21,9 +27,13 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+		$section = Section::find($request->section_id ?? -1);
+
+        return view('editor.pages_create', compact(
+			'section', 'request'
+		));
     }
 
     /**

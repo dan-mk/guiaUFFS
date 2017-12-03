@@ -35,7 +35,9 @@ class User extends Authenticatable
     public function sections()
     {
 		if(Auth::user()->isAdmin()){
-			return Section::with('pages');
+			return Section::with('pages', 'pages.page_versions');
+
+
 		}
         return $this->belongsToMany('App\Section', 'permissions')->with('pages');
     }

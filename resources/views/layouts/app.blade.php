@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>GuiaUFFS | {{ $section['name'] ?? 'Guia universitário colaborativo' }}</title>
+    <title>GuiaUFFS | {{ $title ?? 'Guia universitário colaborativo' }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -50,7 +50,7 @@
 
                                 <ul class="dropdown-menu">
 									<li>
-										<a href="{{ route('editor.pages') }}">Área do editor</a>
+										<a href="{{ route('editor') }}">Área do editor</a>
 									</li>
                                     <li>
                                         <a href="{{ route('logout') }}"

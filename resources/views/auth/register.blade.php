@@ -7,7 +7,7 @@
 			<div class="jumbotron">
 				<h1>Contribuir para o GuiaUFFS</h1>
 				<p>
-					Se você é aluno da Universidade Federal da Fronteira Sul e 
+					Se você é aluno da Universidade Federal da Fronteira Sul e
 					deseja contribuir para o GuiaUFFS, crie sua conta!
 					Após a autorização de um administrador, você poderá se
 					tornar um editor e começar a ajudar nossa comunidade.
@@ -26,7 +26,7 @@
                             <label for="name" class="col-md-12">Nome</label>
 
                             <div class="col-md-12">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">

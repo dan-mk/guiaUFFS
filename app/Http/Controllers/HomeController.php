@@ -26,10 +26,8 @@ class HomeController extends Controller
     {
 		$sections = Section::all();
 
-		$data = [
-			'sections' => $sections
-		];
-
-        return view('home', $data);
+        return view('home', compact(
+			'sections'
+		));
     }
 }

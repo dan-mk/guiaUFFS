@@ -2,40 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\Section;
 use Illuminate\Http\Request;
 
 class EditorController extends Controller
 {
 	/**
-     * Display a listing of pages available for editing.
+     * In the future, when more things are added, it could be a dashboard
      *
      * @return \Illuminate\Http\Response
      */
-    public function pages()
+    public function index()
     {
-		$sections = Auth::user()->sections()->get();
-
-		$data = [
-			'active_pages' => 'active',
-			'sections' => $sections
-		];
-
-        return view('editor.pages', $data);
-    }
-
-	/**
-     * Display a listing of groups available for editing.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function groups()
-    {
-		$data = [
-			'active_groups' => 'active'
-		];
-
-        return view('editor.groups', $data);
+		return redirect()->route('paginas.index');
     }
 }
