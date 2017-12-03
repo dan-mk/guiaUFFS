@@ -33,7 +33,7 @@ class PublicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function page($section, $page)
+    public function page($subdomain, $page)
     {
         return $section . '-' . $page;
     }

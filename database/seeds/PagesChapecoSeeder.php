@@ -34,7 +34,7 @@ class PagesChapecoSeeder extends Seeder
 
 			DB::table('page_versions')->insert([
 				'title' => $page['title'],
-				'content' => $section_id,
+				'content' => '',
 				'page_id' => $page_id,
 				'user_id' => $user_id
 	        ]);

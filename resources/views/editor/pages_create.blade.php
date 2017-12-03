@@ -16,8 +16,22 @@
 
 						<input name="section_id" type="hidden" value="{{ $request->section_id }}">
 
+						<div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-12">Endereço de acesso</label>
+
+                            <div class="col-md-12">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-12">Título da página</label>
+                            <label for="title" class="col-md-12">Título</label>
 
                             <div class="col-md-12">
                                 <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required>

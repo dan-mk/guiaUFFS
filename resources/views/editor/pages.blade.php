@@ -12,7 +12,9 @@
 				<ul>
 			    @if (count($section->pages))
 			        @foreach($section->pages as $page)
-						<li class="list-group-item">{{ $page->address }}</li>
+						@foreach($page->page_versions as $page_version)
+							<li class="list-group-item">{{ $page_version->title }}</li>
+						@endforeach
 			        @endforeach
 			    @else
 			        <li class="list-group-item">Nenhuma página criada nesta seção.</li>
