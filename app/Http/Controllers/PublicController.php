@@ -25,8 +25,11 @@ class PublicController extends Controller
 		$title = $section->name;
 		$pages = $section->pages()->where('hidden', '=', false)->get();
 
+		$section_parent = $section->parent()->get();
+		$section_children = $section->children()->get();
+
         return view('home', compact(
-			'title', 'section', 'pages'
+			'title', 'section', 'pages', 'section_parent', 'section_children'
 		));
     }
 
@@ -63,8 +66,10 @@ class PublicController extends Controller
 		$subtitles = $matches[2];
 		$subtitles_ids = $matches[1];
 
+		$pages_menu = $section->pages()->where('hidden', '=', false)->get();
+
         return view('page', compact(
-			'title', 'section', 'page', 'page_version', 'subtitles', 'subtitles_ids'
+			'title', 'section', 'page', 'page_version', 'subtitles', 'subtitles_ids', 'pages_menu'
 		));
     }
 }

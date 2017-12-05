@@ -17,9 +17,7 @@ class PagesChapecoSeeder extends Seeder
 
 		$pages = [
 			['address' => 'biblioteca', 'title' => 'Biblioteca'],
-			['address' => 'cantina', 'title' => 'Cantina'],
 			['address' => 'cursos', 'title' => 'Cursos'],
-			['address' => 'food-trucks', 'title' => 'Food Trucks'],
 			['address' => 'onibus', 'title' => 'Horários de Ônibus'],
 			['address' => 'infraestrutura', 'title' => 'Infraestrutura'],
 			['address' => 'ru', 'title' => 'Restaurante Universitário']

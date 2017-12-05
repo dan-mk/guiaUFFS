@@ -8350,15 +8350,31 @@ button.close {
   }
 }
 
-a {
-  color: #275dd6;
-}
-
 body {
   background: #eee;
   color: black;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
+}
+
+a {
+  color: #275dd6;
+}
+
+li {
+  list-style: none;
+}
+
+.page-wrapper {
+  min-height: 100%;
+  padding-bottom: 100px;
+  position: absolute;
+  width: 100%;
+}
+
+.bottom-margin {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .navbar {
@@ -8405,6 +8421,26 @@ body {
 }
 
 .navbar-toggle:hover {
+  background: #f1feff !important;
+}
+
+.btn-link-vertical-menu {
+  display: block;
+  line-height: 1.1;
+  padding: 6px 0 !important;
+  text-align: left;
+}
+
+.custom_active {
+  color: black !important;
+}
+
+.list-group-pages a {
+  color: #275dd6 !important;
+  font-weight: 600;
+}
+
+.list-group-pages a:hover {
   background: #f1feff !important;
 }
 
@@ -8513,5 +8549,35 @@ input[type="checkbox"] {
 
 .great-content {
   font-size: 19px;
+}
+
+.main-footer {
+  background: #333;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.main-footer img {
+  display: block;
+  padding: 20px 15px 0;
+}
+
+.main-footer nav {
+  float: right;
+}
+
+.main-footer li {
+  float: left;
+}
+
+.main-footer a {
+  color: white;
+  display: block;
+  padding: 22px 20px;
+}
+
+.main-footer a:hover {
+  background: #3a3a3a;
 }
 

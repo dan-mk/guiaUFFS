@@ -1,0 +1,24 @@
+.main-footer {
+	background: #333;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	img {
+		display: block;
+		padding: 20px 15px 0;
+	}
+	nav {
+		float: right;
+	}
+	li {
+		float: left;
+	}
+	a {
+		color: white;
+		display: block;
+		padding: 22px 20px;
+		&:hover {
+			background: #3a3a3a;
+		}
+	}
+}

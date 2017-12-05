@@ -38,7 +38,7 @@ Route::domain('guia.uffs')->group(function (){
 		return view('about');
 	})->name('about');
 
-	Route::prefix('editor')->group(function (){
+	Route::group(['prefix' => 'editor',  'middleware' => 'auth'], function (){
 		Route::get('/', 'EditorController@index')->name('editor');
 		Route::post('paginas', 'PageController@store')->name('pages.store');
 		Route::get('paginas', 'PageController@index')->name('pages.index');

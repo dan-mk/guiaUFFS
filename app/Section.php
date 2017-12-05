@@ -12,6 +12,16 @@ class Section extends Model
 		return $this->hasMany('App\Page');
 	}
 
+	public function parent()
+	{
+		return $this->hasOne('App\Parentage', 'child')->with('parent_rel');
+	}
+
+	public function children()
+	{
+		return $this->hasMany('App\Parentage', 'parent')->with('child_rel');
+	}
+
 	public static function getSection($subdomain)
 	{
 		$sections = self::getIndexedSections();

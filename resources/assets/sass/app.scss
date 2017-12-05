@@ -8,11 +8,9 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-a {
-	color: #275dd6;
-}
+@import "global";
 
-@import "navbar";
+@import "navs";
 
 // Login and register forms
 @import "logforms";
@@ -20,3 +18,5 @@ a {
 @import "contribute";
 
 @import "home_about";
+
+@import "footer";

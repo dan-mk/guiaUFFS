@@ -15,7 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div class="page-wrapper" id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -72,6 +72,20 @@
         </nav>
 
         @yield('content')
+
+		<footer class="main-footer">
+			<div class="container clear">
+				<nav>
+					<ul class="clear">
+						<li><a href="{{ route('about') }}">Sobre</a></li>
+						@guest
+							<li><a href="{{ route('register') }}">Contribuir</a></li>
+						@endguest
+					</ul>
+				</nav>
+				<img src="{{ asset('img/guiauffs_white.png') }}" alt="GuiaUFFS"/>
+			</div>
+		</footer>
     </div>
 
     <!-- Scripts -->

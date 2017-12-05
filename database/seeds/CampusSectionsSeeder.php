@@ -12,12 +12,12 @@ class CampusSectionsSeeder extends Seeder
     public function run()
     {
 		$campi = [
-			['name' => 'Cerro Largo', 'subdomain' => 'cerrolargo'],
-			['name' => 'Chapecó', 'subdomain' => 'chapeco'],
-			['name' => 'Erechim', 'subdomain' => 'erechim'],
-			['name' => 'Laranjeiras do Sul', 'subdomain' => 'laranjeirasdosul'],
-			['name' => 'Passo Fundo', 'subdomain' => 'passofundo'],
-			['name' => 'Realeza', 'subdomain' => 'realeza'],
+			['name' => 'Campus Cerro Largo', 'subdomain' => 'cerrolargo'],
+			['name' => 'Campus Chapecó', 'subdomain' => 'chapeco'],
+			['name' => 'Campus Erechim', 'subdomain' => 'erechim'],
+			['name' => 'Campus Laranjeiras do Sul', 'subdomain' => 'laranjeirasdosul'],
+			['name' => 'Campus Passo Fundo', 'subdomain' => 'passofundo'],
+			['name' => 'Campus Realeza', 'subdomain' => 'realeza'],
 		];
 
 		foreach($campi as $campus){
