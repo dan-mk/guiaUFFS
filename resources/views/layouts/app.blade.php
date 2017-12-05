@@ -52,6 +52,11 @@
 									<li>
 										<a href="{{ route('editor') }}">Área do editor</a>
 									</li>
+									@if(Auth::user()->isAdmin())
+										<li>
+											<a href="{{ route('admin') }}">Área do administrador</a>
+										</li>
+									@endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

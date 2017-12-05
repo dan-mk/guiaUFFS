@@ -49,5 +49,9 @@ Route::domain('guia.uffs')->group(function (){
 		Route::get('paginas/{id}/editar', 'PageController@edit')->name('pages.edit');
 	});
 
+	Route::group(['prefix' => 'admin',  'middleware' => ['auth', 'admin']], function (){
+		Route::get('/', 'AdminController@index')->name('admin');
+	});
+
 	Route::get('{page}', 'PublicController@page');
 });
