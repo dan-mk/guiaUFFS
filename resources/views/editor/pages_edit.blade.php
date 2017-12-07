@@ -76,6 +76,9 @@
                         <button type="submit" class="btn btn-primary pull-right">
                             Salvar alterações
                         </button>
+						<a href="{{ route('pages.index') }}" class="btn btn-danger">
+							Cancelar
+						</a>
                     </div>
                 </div>
             </form>

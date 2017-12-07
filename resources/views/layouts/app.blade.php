@@ -81,7 +81,7 @@
 		<footer class="main-footer">
 			<div class="container clear">
 				<nav>
-					<ul class="clear">
+					<ul class="no-margins clear">
 						<li><a href="{{ route('about') }}">Sobre</a></li>
 						@guest
 							<li><a href="{{ route('register') }}">Contribuir</a></li>

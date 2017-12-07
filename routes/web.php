@@ -60,5 +60,7 @@ Route::domain('guia.uffs')->group(function (){
 		Route::get('secoes/{id}/editar', 'SectionController@edit')->name('sections.edit');
 	});
 
-	Route::get('{page}', 'PublicController@page');
+	Route::get('{page}', function ($page){
+		return app('App\Http\Controllers\PublicController')->page('', $page);
+	})->name('main.page');
 });

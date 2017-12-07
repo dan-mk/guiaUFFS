@@ -8367,7 +8367,7 @@ li {
 
 .page-wrapper {
   min-height: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 110px;
   position: absolute;
   width: 100%;
 }
@@ -8375,6 +8375,14 @@ li {
 .bottom-margin {
   display: block;
   margin-bottom: 10px;
+}
+
+.clear {
+  overflow: auto;
+}
+
+.no-margins {
+  margin: 0 !important;
 }
 
 .navbar {
@@ -8579,5 +8587,29 @@ input[type="checkbox"] {
 
 .main-footer a:hover {
   background: #3a3a3a;
+}
+
+.btn-list-link {
+  border-top: 0;
+  padding: 0 0 1px;
+  margin-left: 20px;
+}
+
+.list-header {
+  padding: 0 0 7px;
+}
+
+.gray-bg {
+  background: #e1e1e1;
+}
+
+.btn-danger {
+  border: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .container-sm-medium {
+    max-width: 600px;
+  }
 }
 

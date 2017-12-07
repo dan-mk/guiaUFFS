@@ -1,0 +1,23 @@
+.btn-list-link {
+	border-top: 0;
+	padding: 0 0 1px;
+	margin-left: 20px;
+}
+
+.list-header {
+	padding: 0 0 7px;
+}
+
+.gray-bg {
+	background: #e1e1e1;
+}
+
+.btn-danger {
+	border: 0;
+}
+
+@media screen and (max-width: 992px){
+	.container-sm-medium {
+		max-width: 600px;
+	}
+}
