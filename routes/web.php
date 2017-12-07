@@ -51,6 +51,13 @@ Route::domain('guia.uffs')->group(function (){
 
 	Route::group(['prefix' => 'admin',  'middleware' => ['auth', 'admin']], function (){
 		Route::get('/', 'AdminController@index')->name('admin');
+		Route::post('secoes', 'SectionController@store')->name('sections.store');
+		Route::get('secoes', 'SectionController@index')->name('sections.index');
+		Route::get('secoes/criar', 'SectionController@create')->name('sections.create');
+		Route::put('secoes/{id}', 'SectionController@update')->name('sections.update');
+		Route::get('secoes/{id}', 'SectionController@show')->name('sections.show');
+		Route::delete('secoes/{id}', 'SectionController@destroy')->name('sections.destroy');
+		Route::get('secoes/{id}/editar', 'SectionController@edit')->name('sections.edit');
 	});
 
 	Route::get('{page}', 'PublicController@page');

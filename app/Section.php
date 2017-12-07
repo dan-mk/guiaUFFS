@@ -14,12 +14,12 @@ class Section extends Model
 
 	public function parent()
 	{
-		return $this->hasOne('App\Parentage', 'child')->with('parent_rel');
+		return $this->belongsToMany('App\Section', 'parentages', 'child', 'parent')->first();
 	}
 
 	public function children()
 	{
-		return $this->hasMany('App\Parentage', 'parent')->with('child_rel');
+		return $this->belongsToMany('App\Section', 'parentages', 'parent', 'child');
 	}
 
 	public static function getSection($subdomain)

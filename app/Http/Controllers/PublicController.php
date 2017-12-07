@@ -25,7 +25,7 @@ class PublicController extends Controller
 		$title = $section->name;
 		$pages = $section->pages()->where('hidden', '=', false)->get();
 
-		$section_parent = $section->parent()->get();
+		$section_parent = $section->parent();
 		$section_children = $section->children()->get();
 
         return view('home', compact(

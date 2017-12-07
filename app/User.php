@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Auth;
 use App\Section;
 use Illuminate\Notifications\Notifiable;
@@ -35,7 +36,7 @@ class User extends Authenticatable
     public function sections()
     {
 		if(Auth::user()->isAdmin()){
-			return Section::table();
+			return DB::table('sections');
 		}
         return $this->belongsToMany('App\Section', 'permissions');
     }

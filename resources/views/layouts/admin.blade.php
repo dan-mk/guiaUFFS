@@ -6,7 +6,7 @@
 <div class="container container-sm-narrow">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-			@yield('editor.content')
+			@yield('admin.content')
         </div>
     </div>
 </div>

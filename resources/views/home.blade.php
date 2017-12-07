@@ -26,17 +26,17 @@
 					<!-- List group -->
 					<span class="bottom-margin">Seções relacionadas</span>
 					<nav>
-						@if(count($section_parent) || count($section_children))
+						@if($section_parent != null || count($section_children))
 
-							@if(count($section_parent))
+							@if($section_parent != null)
 								<a class="btn btn-link btn-link-vertical-menu" href="{{ route('main.home') }}">
-									{{ $section_parent->first()->parent_rel->name }}
+									{{ $section_parent->name }}
 								</a>
 							@endif
 
 							@foreach($section_children as $section_child)
-								<a class="btn btn-link btn-link-vertical-menu" href="{{ route('home', $section_child->child_rel->subdomain) }}">
-									{{ $section_child->child_rel->name }}
+								<a class="btn btn-link btn-link-vertical-menu" href="{{ route('home', $section_child->subdomain) }}">
+									{{ $section_child->name }}
 								</a>
 							@endforeach
 						@else
