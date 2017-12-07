@@ -117,11 +117,12 @@ class PageController extends Controller
     public function edit($page_id)
     {
 		$page = Page::with('section', 'page_versions')->find($page_id);
-		$section = $page->section;
 
 		if($page == null){
 			return redirect()->route('pages.index');
 		}
+
+		$section = $page->section;
 
         return view('editor.pages_edit', compact('page', 'section'));
     }

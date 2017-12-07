@@ -95,5 +95,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+	<script>
+	$(function (){
+		$(".spoiler-trigger").click(function() {
+			$(this).parent().next().collapse('toggle');
+		});
+	});
+	</script>
 </body>
 </html>

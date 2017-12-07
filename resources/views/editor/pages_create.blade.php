@@ -14,7 +14,7 @@
 				<input name="section_id" type="hidden" value="{{ $request->section_id }}">
 
 				<div class="form-group{{ ($errors->has('address') or $errors->has('page_doesnt_exist')) ? ' has-error' : '' }}">
-                    <label for="title" class="col-md-12">Endereço de acesso</label>
+                    <label for="address" class="col-md-12">Endereço de acesso</label>
 
                     <div class="col-md-12">
                         <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
@@ -57,8 +57,10 @@
 					</div>
 				</div>
 
+				@include('editor.pages_content_options')
+
                 <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-12">Conteúdo</label>
+                    <label for="content" class="col-md-12">Conteúdo</label>
 
                     <div class="col-md-12">
 						<textarea id="content" name="content" class="form-control" rows="10" required>{{ old('content') }}</textarea>

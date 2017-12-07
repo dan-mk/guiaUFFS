@@ -57,6 +57,8 @@
 					</div>
 				</div>
 
+				@include('editor.pages_content_options')
+
                 <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                     <label for="password" class="col-md-12">Conteúdo</label>
 

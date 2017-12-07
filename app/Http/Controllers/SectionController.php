@@ -27,9 +27,17 @@ class SectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+		$parent_section = Section::find($request->parent_id ?? -1);
+
+		if($parent_section == null){
+			return redirect()->route('sections.index');
+		}
+
+        return view('admin.sections_create', compact(
+			'parent_section', 'request'
+		));
     }
 
     /**
@@ -60,9 +68,17 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($section_id)
     {
-        //
+		$section = Section::find($section_id);
+
+		if($section == null){
+			return redirect()->route('sections.index');
+		}
+
+		$parent_section = $section->parent();
+
+        return view('admin.sections_edit', compact('parent_section', 'section'));
     }
 
     /**

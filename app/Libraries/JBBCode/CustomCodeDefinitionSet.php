@@ -36,7 +36,7 @@ class CustomCodeDefinitionSet implements CodeDefinitionSet
         $this->definitions[] = $builder->build();
 
         /* [imagem=alt text] image tag */
-        $builder = new CodeDefinitionBuilder('imagem', '<img src="{param}" alt="{option}" />');
+        $builder = new CodeDefinitionBuilder('imagem', '<img width="100%" style="margin: 20px 0" src="{param}" alt="{option}" />');
         $builder->setUseOption(true)->setParseContent(false)->setBodyValidator($urlValidator);
         $this->definitions[] = $builder->build();
 
@@ -45,7 +45,7 @@ class CustomCodeDefinitionSet implements CodeDefinitionSet
 		$builder->setUseOption(true);
         $this->definitions[] = $builder->build();
 
-		/* [alerta] alert tag */
+		/* [importante] alert tag */
         $builder = new CodeDefinitionBuilder('importante', '<div class="alert alert-danger" role="alert">{param}</div>');
         $this->definitions[] = $builder->build();
     }
