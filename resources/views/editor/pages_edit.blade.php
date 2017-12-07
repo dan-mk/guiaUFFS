@@ -85,5 +85,29 @@
                 </div>
             </form>
         </div>
+		@if(Auth::user()->isAdmin())
+		<div class="panel-body">
+			<form class="form-horizontal" method="POST" action="{{ route('pages.destroy', $page->id) }}">
+                {{ csrf_field() }}
+
+				<input name="_method" type="hidden" value="DELETE">
+
+				<div class="panel panel-default no-margins">
+					<div class="panel-heading">
+						<button type="button" class="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse">Deletar página</button>
+					</div>
+					<div class="panel-collapse collapse out">
+						<div class="panel-body">
+							<button type="submit" class="btn btn-danger pull-right">
+	                            Deletar
+	                        </button>
+							Atenção!<br>
+							Esta ação é permanente e não pode ser desfeita.
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		@endif
     </div>
 @endsection

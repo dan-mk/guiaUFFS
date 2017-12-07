@@ -89,7 +89,10 @@ class PageController extends Controller
 			'title', 'content', 'page_id', 'user_id'
 		));
 
-		return redirect()->route('pages.index');
+		if($section_id == 1){
+			return redirect()->route('main.page', $address);
+		}
+		return redirect()->route('page', [Section::find($section_id)->subdomain, $address]);
     }
 
     /**
@@ -178,7 +181,10 @@ class PageController extends Controller
 			'title', 'content', 'page_id', 'user_id'
 		));
 
-		return redirect()->route('pages.index');
+		if($page->section_id == 1){
+			return redirect()->route('main.page', $address);
+		}
+		return redirect()->route('page', [Section::find($page->section_id)->subdomain, $address]);
     }
 
     /**
@@ -187,8 +193,11 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($page_id)
     {
-        //
+        if(Auth::user()->isAdmin()){
+			Page::find($page_id)->forceDelete();
+		}
+		return redirect()->route('pages.index');
     }
 }
