@@ -58,6 +58,9 @@ Route::domain('guia.uffs')->group(function (){
 		Route::get('secoes/{id}', 'SectionController@show')->name('sections.show');
 		Route::delete('secoes/{id}', 'SectionController@destroy')->name('sections.destroy');
 		Route::get('secoes/{id}/editar', 'SectionController@edit')->name('sections.edit');
+
+		Route::get('secoes/permissoes/adicionar/{section_id}/{user_id}', 'PermissionController@add')->name('sections.permissions.add');
+		Route::get('secoes/permissoes/remover/{section_id}/{user_id}', 'PermissionController@remove')->name('sections.permissions.remove');
 	});
 
 	Route::get('{page}', function ($page){

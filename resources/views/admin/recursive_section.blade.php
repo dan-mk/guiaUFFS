@@ -2,6 +2,9 @@
 	<li class="list-group-item">
 		<div class="list-header">
 			<span>{{ $section->name }}</span>
+			<a class="btn btn-link btn-list-link pull-right" href="{{ route('sections.show', $section->id) }}">
+				Permissões
+			</a>
 			<a class="btn btn-link btn-list-link pull-right" href="{{ route('sections.edit', $section->id) }}">
 				Editar
 			</a>

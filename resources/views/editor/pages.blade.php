@@ -22,7 +22,7 @@
 							<a class="btn btn-link btn-list-link pull-right" href="{{ route('pages.edit', $page->id) }}">
 								Editar
 							</a>
-							<a class="btn btn-link btn-list-link pull-right" target="_blank" href="{{ $section->subdomain == '' ? route('main.page', $page->address) : route('page', [$section->subdomain, $page->address]) }}">
+							<a class="btn btn-link btn-list-link pull-right" target="_blank" href="{{ $section->complete_subdomain() == '' ? route('main.page', $page->address) : route('page', [$section->complete_subdomain(), $page->address]) }}">
 								Ver
 							</a>
 						</li>

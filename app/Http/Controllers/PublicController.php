@@ -59,7 +59,7 @@ class PublicController extends Controller
 		$parser = new JBBCode\Parser();
 		$parser->addCodeDefinitionSet(new JBBCode\CustomCodeDefinitionSet());
 
-		$page_version->content = $parser->parse($page_version->content)->getAsHtml();
+		$page_version->content = nl2br($parser->parse($page_version->content)->getAsHtml());
 
 		preg_match_all('/<h2 id="(.+)">(.+)<\/h2>/', $page_version->content, $matches);
 

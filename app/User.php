@@ -35,7 +35,7 @@ class User extends Authenticatable
      */
     public function sections()
     {
-		if(Auth::user()->isAdmin()){
+		if($this->isAdmin()){
 			return DB::table('sections');
 		}
         return $this->belongsToMany('App\Section', 'permissions');

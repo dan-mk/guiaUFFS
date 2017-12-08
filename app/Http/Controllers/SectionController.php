@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
 use App\Section;
 use App\Parentage;
 use Illuminate\Http\Request;
@@ -60,16 +61,18 @@ class SectionController extends Controller
 		$parent_id = intval($request->parent_id);
 		$user_id = Auth::user()->id;
 
-        $section_id = Section::create(compact(
+        $section = Section::create(compact(
 			'subdomain', 'name', 'user_id'
-		))->id;
+		));
+
+		$section_id = $section->id;
 
 		Parentage::create([
 			'parent' => $parent_id,
 			'child' => $section_id
 		]);
 
-		return redirect()->route('home', $subdomain);
+		return redirect()->route('home', $section->complete_subdomain());
     }
 
     /**
@@ -78,9 +81,14 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($section_id)
     {
-        //
+		$users = User::where('admin', '=', 'false')->get();
+		$section = Section::find($section_id);
+
+        return view('admin.sections_permissions', compact(
+			'users', 'section'
+		));
     }
 
     /**
@@ -132,6 +140,7 @@ class SectionController extends Controller
 		));
 		$section->save();
 
+		return redirect()->route('home', $section->complete_subdomain());
     }
 
     /**

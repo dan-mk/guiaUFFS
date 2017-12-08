@@ -29,7 +29,7 @@
 						@if($section_parent != null || count($section_children))
 
 							@if($section_parent != null)
-								<a class="btn btn-link btn-link-vertical-menu" href="{{ route('main.home') }}">
+								<a class="btn btn-link btn-link-vertical-menu" href="{{ $section_parent->complete_subdomain() == '' ? route('main.home') : route('home', $section_parent->complete_subdomain()) }}">
 									{{ $section_parent->name }}
 								</a>
 							@endif
