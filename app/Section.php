@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
+	// The attributes that are mass assignable
+	protected $fillable = ['subdomain', 'user_id', 'name'];
+
+	public function complete_subdomain()
+	{
+		$subdomain = [];
+		$section = Section::find($this->id);
+		while($section != null){
+			$subdomain[] = $section->subdomain;
+			$section = $section->parent();
+		}
+		return implode(array_slice($subdomain, 0, count($subdomain) - 1), '.');
+	}
+
 	public function pages()
 	{
 		return $this->hasMany('App\Page');

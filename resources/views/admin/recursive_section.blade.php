@@ -5,7 +5,7 @@
 			<a class="btn btn-link btn-list-link pull-right" href="{{ route('sections.edit', $section->id) }}">
 				Editar
 			</a>
-			<a class="btn btn-link btn-list-link pull-right" target="_blank" href="{{ $section->subdomain == '' ? route('main.home') : route('home', $section->subdomain) }}">
+			<a class="btn btn-link btn-list-link pull-right" target="_blank" href="{{ $section->complete_subdomain() == '' ? route('main.home') : route('home', $section->complete_subdomain()) }}">
 				Ver
 			</a>
 		</div>

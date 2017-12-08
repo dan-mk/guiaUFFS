@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Section;
+use App\Parentage;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -48,7 +49,27 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$request->validate([
+			'subdomain' => 'required|max:64|regex:/^[a-z\d]+/',
+			'name' => 'required',
+			'parent_id' => 'required|numeric|exists:sections,id'
+		]);
+
+		$subdomain = strtolower($request->subdomain);
+		$name = $request->name;
+		$parent_id = intval($request->parent_id);
+		$user_id = Auth::user()->id;
+
+        $section_id = Section::create(compact(
+			'subdomain', 'name', 'user_id'
+		))->id;
+
+		Parentage::create([
+			'parent' => $parent_id,
+			'child' => $section_id
+		]);
+
+		return redirect()->route('home', $subdomain);
     }
 
     /**
@@ -88,9 +109,29 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $section_id)
     {
-        //
+		$section = Section::find($section_id);
+		if($section == null){
+			return redirect()->route('sectins.index');
+		}
+
+		$request->validate([
+			'subdomain' => 'required|max:64|regex:/^[a-z\d]+',
+			'name' => 'required',
+			'parent_id' => 'required|numeric|exists:sections,id'
+		]);
+
+		$subdomain = strtolower($request->subdomain);
+		$name = $request->name;
+		$parent_id = intval($request->parent_id);
+		$user_id = Auth::user()->id;
+
+        $section->fill(compact(
+			'subdomain', 'name', 'user_id'
+		));
+		$section->save();
+
     }
 
     /**

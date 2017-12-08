@@ -53,7 +53,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
 		$request->validate([
-			'address' => 'required',
+			'address' => 'required|not_in:entrar,contribuir,sobre,editor,admin,sair',
 			'title' => 'required',
 			'content' => 'required',
 			'section_id' => 'required|numeric|exists:sections,id'
@@ -92,7 +92,7 @@ class PageController extends Controller
 		if($section_id == 1){
 			return redirect()->route('main.page', $address);
 		}
-		return redirect()->route('page', [Section::find($section_id)->subdomain, $address]);
+		return redirect()->route('page', [Section::find($section_id)->complete_subdomain(), $address]);
     }
 
     /**
@@ -108,7 +108,7 @@ class PageController extends Controller
 			abort(404);
 		}
 
-        return redirect()->route('page', [$page->section->subdomain, $page->address]);
+        return redirect()->route('page', [$page->section->complete_subdomain(), $page->address]);
     }
 
     /**
@@ -184,7 +184,7 @@ class PageController extends Controller
 		if($page->section_id == 1){
 			return redirect()->route('main.page', $address);
 		}
-		return redirect()->route('page', [Section::find($page->section_id)->subdomain, $address]);
+		return redirect()->route('page', [Section::find($page->section_id)->complete_subdomain(), $address]);
     }
 
     /**

@@ -20,7 +20,7 @@ class PublicController extends Controller
 			abort(404);
 		}
 		$section = Section::find($section_id);
-		session(['section_subdomain' => $section->subdomain]);
+		session(['section_subdomain' => $section->complete_subdomain()]);
 
 		$title = $section->name;
 		$pages = $section->pages()->where('hidden', '=', false)->get();
@@ -45,7 +45,7 @@ class PublicController extends Controller
 			abort(404);
 		}
 		$section = Section::find($section_id);
-		session(['section_subdomain' => $section->subdomain]);
+		session(['section_subdomain' => $section->complete_subdomain()]);
 
 		$page = $section->pages()->where('address', '=', $page_address)->with('page_versions')->first();
 

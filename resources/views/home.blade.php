@@ -35,7 +35,7 @@
 							@endif
 
 							@foreach($section_children as $section_child)
-								<a class="btn btn-link btn-link-vertical-menu" href="{{ route('home', $section_child->subdomain) }}">
+								<a class="btn btn-link btn-link-vertical-menu" href="{{ route('home', $section_child->complete_subdomain()) }}">
 									{{ $section_child->name }}
 								</a>
 							@endforeach
